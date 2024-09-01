@@ -1,0 +1,322 @@
+package StartPage;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import java.util.Timer;
+
+
+public class FrameWork {
+    static float f = 1.69160305F;
+
+    public static void Frame(JFrame frame) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+        frame.setSize(570, 900);
+        int x = 50;
+        int y = ((screenSize.height - 900) / 2) - 20;
+        frame.setLocation(x, y);
+
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public static void Panel(JPanel panel, JFrame frame) {
+        panel.setLayout(null);
+        panel.setBounds(frame.getBounds());
+        panel.setBackground(new Color(247, 247, 247));
+        frame.add(panel);
+
+        JLabel Order1 = new JLabel();
+        Order1.setBounds((570 / 2) - ((int) (804 / f) / 2) + 20, 640, 190, 171);
+        ImageIcon od1 = new ImageIcon("Img/StartStepImg/Order1.png");
+        Image od_img1 = od1.getImage();
+        Image od_logo1 = od_img1.getScaledInstance(190, 171, 4);
+        Order1.setIcon(new ImageIcon(od_logo1));
+        Order1.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                OrderUI(panel);
+            }
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                Order1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                Order1.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+        });
+
+        JLabel Order2 = new JLabel();
+        Order2.setBounds((570 / 2) + 20, 640, 190, 171);
+        ImageIcon od2 = new ImageIcon("Img/StartStepImg/Order2.png");
+        Image od_img2 = od2.getImage();
+        Image od_logo2 = od_img2.getScaledInstance(190, 171, 4);
+        Order2.setIcon(new ImageIcon(od_logo2));
+        Order2.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                OrderUI(panel);
+            }
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                Order2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                Order2.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+        });
+
+        JLabel maker = new JLabel("made by. doyeon");
+        maker.setFont(new Font("Arial", Font.BOLD, 14));
+        maker.setForeground(new Color(240, 81, 160));
+        maker.setBounds(15, 845, 130, 20);
+        maker.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                String url = "https://www.instagram.com/7._d.yn/";
+
+                try {
+                    Desktop.getDesktop().browse(new URI(url));
+                } catch (URISyntaxException | IOException var4) {
+                    throw new RuntimeException(var4);
+                }
+            }
+
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                maker.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                maker.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+        });
+
+        JLabel backgroundW = new JLabel();
+        backgroundW.setOpaque(true);
+        backgroundW.setBounds((570 - (int) (804 / f)) / 2, 12, (int) (804 / f), (int) (1046 / f));
+        backgroundW.setBackground(Color.WHITE);
+
+        Advertisement(panel);
+
+        panel.add(backgroundW);
+        panel.add(Order1);
+        panel.add(Order2);
+        panel.add(maker);
+
+        panel.revalidate();
+        panel.repaint();
+    }
+
+    public static void Advertisement(JPanel panel) {
+        final String[] Img_path1 = {"Img/StartStepImg/Ad1.png","Img/StartStepImg/Ad3.png","Img/StartStepImg/Ad2.png"};
+        final String[] Img_path2 = {"Img/StartStepImg/Ad2.png","Img/StartStepImg/Ad1.png","Img/StartStepImg/Ad3.png"};
+
+        final int width = (int) (804 / f);
+        final int panelWidth1 = 0;
+        final int panelWidth2 = panel.getWidth();
+
+        JLabel backframe = new JLabel();
+        backframe.setBounds((570 - (int) (804 / f)) / 2, 12, (int) (804 / f), (int) (1046 / f));
+        ImageIcon bfI = new ImageIcon("Img/StartStepImg/backframe.png");
+        Image bf_img = bfI.getImage();
+        Image bf_logo = bf_img.getScaledInstance((int) (804 / f), (int) (1046 / f), Image.SCALE_SMOOTH);
+        backframe.setIcon(new ImageIcon(bf_logo));
+
+        JLabel backside1 = new JLabel();
+        backside1.setBounds(0, 12,47,(int) (1046 / f));
+        backside1.setBackground(new Color(247,247,247));
+        backside1.setOpaque(true);
+        panel.add(backside1);
+
+        JLabel backside2 = new JLabel();
+        backside2.setBounds( ((570 - (int) (804 / f)) / 2) +  (int) (804/f), 12,47,(int) (1046 / f));
+        backside2.setBackground(new Color(247,247,247));
+        backside2.setOpaque(true);
+        panel.add(backside2);
+
+        JLabel Ad1 = new JLabel();
+        Ad1.setBounds((570 - (int) (804 / f)) / 2, 12, (int) (804 / f), (int) (1046 / f));
+        ImageIcon ad1I = new ImageIcon(Img_path1[0]);
+        Image ad1_img = ad1I.getImage();
+        Image ad1_logo = ad1_img.getScaledInstance((int) (804 / f), (int) (1046 / f), Image.SCALE_SMOOTH);
+        Ad1.setIcon(new ImageIcon(ad1_logo));
+
+        JLabel Ad2 = new JLabel();
+        Ad2.setBounds(panel.getWidth(), 12, (int) (804 / f), (int) (1046 / f));
+        ImageIcon ad2I = new ImageIcon(Img_path2[0]);
+        Image ad2_img = ad2I.getImage();
+        Image ad2_logo = ad2_img.getScaledInstance((int) (804 / f), (int) (1046 / f), Image.SCALE_SMOOTH);
+        Ad2.setIcon(new ImageIcon(ad2_logo));
+
+
+        Timer animation_m = new Timer();
+        TimerTask animationTimer = new TimerTask() {
+            int path_cnt1 = 0;
+            int path_cnt2 = 0;
+
+            int xPos1 = panelWidth1;
+            int xPos2 = (panelWidth2) - 44;
+
+            @Override
+            public void run() {
+                if (xPos1 > -width) {
+                    xPos1 -= 6;
+                    Ad1.setLocation(xPos1, 12);
+
+                    panel.revalidate();
+                    panel.repaint();
+                } else {
+                    xPos1 = panel.getWidth();
+
+                    path_cnt1++;
+                    if (path_cnt1 >= Img_path1.length) {
+                        path_cnt1 = 0;
+                    }
+                    ImageIcon ad1I = new ImageIcon(Img_path1[path_cnt1]);
+                    Image ad1_img = ad1I.getImage();
+                    Image ad1_logo = ad1_img.getScaledInstance((int) (804 / f), (int) (1046 / f), Image.SCALE_SMOOTH);
+                    Ad1.setIcon(new ImageIcon(ad1_logo));
+
+                    xPos2 = (570 - (int) (804 / f)) / 2;
+                    panel.revalidate();
+                    panel.repaint();
+
+                    try {
+                        Thread.sleep(6000);
+                    } catch (InterruptedException e) {
+                        System.out.println("hello1");
+                        throw new RuntimeException(e);
+                    }
+                }
+
+                if (xPos2 > -(width)){
+                    xPos2 -= 6;
+                    Ad2.setLocation(xPos2, 12);
+
+                    panel.revalidate();
+                    panel.repaint();
+                }
+                else {
+                    xPos2 = panel.getWidth();
+
+                    path_cnt2++;
+                    if (path_cnt2 >= Img_path2.length) {
+                        path_cnt2 = 0;
+                    }
+                    ImageIcon ad2I = new ImageIcon(Img_path2[path_cnt2]);
+                    Image ad2_img = ad2I.getImage();
+                    Image ad2_logo = ad2_img.getScaledInstance((int) (804 / f), (int) (1046 / f), Image.SCALE_SMOOTH);
+                    Ad2.setIcon(new ImageIcon(ad2_logo));
+
+                    xPos1 = (570 - (int) (804 / f)) / 2;
+                    panel.revalidate();
+                    panel.repaint();
+
+                    try {
+                        Thread.sleep(6000);
+                    } catch (InterruptedException e) {
+                        System.out.println("hello");
+                        throw new RuntimeException(e);
+                    }
+                }
+
+            }
+        };
+        animation_m.schedule(animationTimer, 6000,16);
+
+        panel.add(backframe);
+        panel.add(Ad1);
+        panel.add(Ad2);
+    }
+    public static void OrderUI(JPanel panel) {
+        JLabel Black = new JLabel();
+        Black.setBounds(0, 0, panel.getWidth(), panel.getHeight());
+        Black.setBackground(new Color(0, 0, 0, 128)); // 검은색 반투명 배경
+        Black.setOpaque(true);
+
+        JLabel TogoForhere = new JLabel();
+        TogoForhere.setBounds((panel.getWidth() - (int) (724 / f))/2 , 135, (int) (724 / f), (int) (1002 / f));
+        ImageIcon tfI = new ImageIcon("Img/StartStepImg/TogoForhere.png");
+        Image ad2_img = tfI.getImage();
+        Image ad2_logo = ad2_img.getScaledInstance((int) (724 / f), (int) (1002 / f), Image.SCALE_SMOOTH);
+        TogoForhere.setIcon(new ImageIcon(ad2_logo));
+
+        JLabel OrderB1 = new JLabel();
+        OrderB1.setBounds(108, 370, 145,145);
+        OrderB1.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                System.out.println("가져가기");
+            }
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                OrderB1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                OrderB1.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+        });
+
+
+        JLabel OrderB2 = new JLabel();
+        OrderB2.setBounds(301, 370, 145,145);
+        OrderB2.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                System.out.println("먹고가기");
+            }
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                OrderB2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                OrderB2.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+        });
+
+        JLabel X_bt = new JLabel();
+        X_bt.setBounds(459,140,35,35);
+        X_bt.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                panel.remove(Black);
+                panel.remove(TogoForhere);
+                panel.remove(X_bt);
+                panel.remove(OrderB1);
+                panel.remove(OrderB2);
+
+                panel.revalidate();
+                panel.repaint();
+            }
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                X_bt.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                X_bt.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+        });
+
+        panel.add(Black, 0);
+        panel.add(TogoForhere,0);
+        panel.add(X_bt,0);
+        panel.add(OrderB1,0);
+        panel.add(OrderB2,0);
+
+        panel.revalidate();
+        panel.repaint();
+    }
+}
