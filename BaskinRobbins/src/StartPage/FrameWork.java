@@ -12,9 +12,11 @@ import java.util.Timer;
 public class FrameWork {
     static float f = 1.69160305F;
 
+    // 기본 프레임 설정
     public static void Frame(JFrame frame) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
+        //사이즈 설정
         frame.setSize(570, 900);
         int x = 50;
         int y = ((screenSize.height - 900) / 2) - 20;
@@ -26,12 +28,14 @@ public class FrameWork {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    // 패널 작성 코드
     public static void Panel(JPanel panel, JFrame frame) {
         panel.setLayout(null);
         panel.setBounds(frame.getBounds());
         panel.setBackground(new Color(247, 247, 247));
         frame.add(panel);
 
+        //주문 버튼1 작성 코드
         JLabel Order1 = new JLabel();
         Order1.setBounds((570 / 2) - ((int) (804 / f) / 2) + 20, 640, 190, 171);
         ImageIcon od1 = new ImageIcon("Img/StartStepImg/Order1.png");
@@ -42,6 +46,7 @@ public class FrameWork {
             public void mousePressed(MouseEvent e) {
                 OrderUI(panel);
             }
+
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
                 Order1.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -53,6 +58,7 @@ public class FrameWork {
             }
         });
 
+        // 주문 버튼2 작성코드
         JLabel Order2 = new JLabel();
         Order2.setBounds((570 / 2) + 20, 640, 190, 171);
         ImageIcon od2 = new ImageIcon("Img/StartStepImg/Order2.png");
@@ -74,6 +80,8 @@ public class FrameWork {
             }
         });
 
+
+        // 메이커 라벨 작성
         JLabel maker = new JLabel("made by. doyeon");
         maker.setFont(new Font("Arial", Font.BOLD, 14));
         maker.setForeground(new Color(240, 81, 160));
@@ -106,6 +114,7 @@ public class FrameWork {
         backgroundW.setBounds((570 - (int) (804 / f)) / 2, 12, (int) (804 / f), (int) (1046 / f));
         backgroundW.setBackground(Color.WHITE);
 
+        // 광고창 함수 호출
         Advertisement(panel);
 
         panel.add(backgroundW);
@@ -118,6 +127,7 @@ public class FrameWork {
     }
 
     public static void Advertisement(JPanel panel) {
+        // 광고 순서 정렬
         final String[] Img_path1 = {"Img/StartStepImg/Ad1.png","Img/StartStepImg/Ad3.png","Img/StartStepImg/Ad2.png"};
         final String[] Img_path2 = {"Img/StartStepImg/Ad2.png","Img/StartStepImg/Ad1.png","Img/StartStepImg/Ad3.png"};
 
@@ -125,6 +135,7 @@ public class FrameWork {
         final int panelWidth1 = 0;
         final int panelWidth2 = panel.getWidth();
 
+        // 광고 프레임 
         JLabel backframe = new JLabel();
         backframe.setBounds((570 - (int) (804 / f)) / 2, 12, (int) (804 / f), (int) (1046 / f));
         ImageIcon bfI = new ImageIcon("Img/StartStepImg/backframe.png");
@@ -132,18 +143,20 @@ public class FrameWork {
         Image bf_logo = bf_img.getScaledInstance((int) (804 / f), (int) (1046 / f), Image.SCALE_SMOOTH);
         backframe.setIcon(new ImageIcon(bf_logo));
 
+        // 광고 넘어가는 공간 가리기1 (왼쪽)
         JLabel backside1 = new JLabel();
         backside1.setBounds(0, 12,47,(int) (1046 / f));
         backside1.setBackground(new Color(247,247,247));
         backside1.setOpaque(true);
         panel.add(backside1);
-
+        // 광고 넘어가는 공간 가리기2 (오른쪽)
         JLabel backside2 = new JLabel();
         backside2.setBounds( ((570 - (int) (804 / f)) / 2) +  (int) (804/f), 12,47,(int) (1046 / f));
         backside2.setBackground(new Color(247,247,247));
         backside2.setOpaque(true);
         panel.add(backside2);
 
+        // 임시 광고 창1
         JLabel Ad1 = new JLabel();
         Ad1.setBounds((570 - (int) (804 / f)) / 2, 12, (int) (804 / f), (int) (1046 / f));
         ImageIcon ad1I = new ImageIcon(Img_path1[0]);
@@ -151,6 +164,7 @@ public class FrameWork {
         Image ad1_logo = ad1_img.getScaledInstance((int) (804 / f), (int) (1046 / f), Image.SCALE_SMOOTH);
         Ad1.setIcon(new ImageIcon(ad1_logo));
 
+        // 임시 광고 창2
         JLabel Ad2 = new JLabel();
         Ad2.setBounds(panel.getWidth(), 12, (int) (804 / f), (int) (1046 / f));
         ImageIcon ad2I = new ImageIcon(Img_path2[0]);
@@ -158,7 +172,7 @@ public class FrameWork {
         Image ad2_logo = ad2_img.getScaledInstance((int) (804 / f), (int) (1046 / f), Image.SCALE_SMOOTH);
         Ad2.setIcon(new ImageIcon(ad2_logo));
 
-
+        // 광고 넘어가는 코드 작성
         Timer animation_m = new Timer();
         TimerTask animationTimer = new TimerTask() {
             int path_cnt1 = 0;
@@ -169,19 +183,23 @@ public class FrameWork {
 
             @Override
             public void run() {
+                // 광고 넘기기1
                 if (xPos1 > -width) {
                     xPos1 -= 6;
                     Ad1.setLocation(xPos1, 12);
 
                     panel.revalidate();
                     panel.repaint();
-                } else {
+                } 
+                else {
                     xPos1 = panel.getWidth();
 
+                    // 광고 임시 창에 광고 바꾸기1
                     path_cnt1++;
                     if (path_cnt1 >= Img_path1.length) {
                         path_cnt1 = 0;
                     }
+                    
                     ImageIcon ad1I = new ImageIcon(Img_path1[path_cnt1]);
                     Image ad1_img = ad1I.getImage();
                     Image ad1_logo = ad1_img.getScaledInstance((int) (804 / f), (int) (1046 / f), Image.SCALE_SMOOTH);
@@ -192,13 +210,14 @@ public class FrameWork {
                     panel.repaint();
 
                     try {
+                        // 6초 대기
                         Thread.sleep(6000);
                     } catch (InterruptedException e) {
-                        System.out.println("hello1");
                         throw new RuntimeException(e);
                     }
                 }
 
+                // 광고 넘긱기 2
                 if (xPos2 > -(width)){
                     xPos2 -= 6;
                     Ad2.setLocation(xPos2, 12);
@@ -209,6 +228,7 @@ public class FrameWork {
                 else {
                     xPos2 = panel.getWidth();
 
+                    // 광고 임시 창에 광고 바꾸기1
                     path_cnt2++;
                     if (path_cnt2 >= Img_path2.length) {
                         path_cnt2 = 0;
@@ -223,9 +243,9 @@ public class FrameWork {
                     panel.repaint();
 
                     try {
+                        //6초 대기
                         Thread.sleep(6000);
                     } catch (InterruptedException e) {
-                        System.out.println("hello");
                         throw new RuntimeException(e);
                     }
                 }
@@ -238,12 +258,17 @@ public class FrameWork {
         panel.add(Ad1);
         panel.add(Ad2);
     }
+
+    // 주문 버튼 눌렀을때 작동
     public static void OrderUI(JPanel panel) {
+
+        // 배경을 어둡게 하기
         JLabel Black = new JLabel();
         Black.setBounds(0, 0, panel.getWidth(), panel.getHeight());
         Black.setBackground(new Color(0, 0, 0, 128)); // 검은색 반투명 배경
         Black.setOpaque(true);
 
+        // 주문 기본 창
         JLabel TogoForhere = new JLabel();
         TogoForhere.setBounds((panel.getWidth() - (int) (724 / f))/2 , 135, (int) (724 / f), (int) (1002 / f));
         ImageIcon tfI = new ImageIcon("Img/StartStepImg/TogoForhere.png");
@@ -251,11 +276,13 @@ public class FrameWork {
         Image ad2_logo = ad2_img.getScaledInstance((int) (724 / f), (int) (1002 / f), Image.SCALE_SMOOTH);
         TogoForhere.setIcon(new ImageIcon(ad2_logo));
 
+        // 가져가기 버튼
         JLabel OrderB1 = new JLabel();
         OrderB1.setBounds(108, 370, 145,145);
         OrderB1.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 System.out.println("가져가기");
+                // 이 다음 메뉴 선택 창으로 넘어갈 예정
             }
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
@@ -268,12 +295,13 @@ public class FrameWork {
             }
         });
 
-
+        // 먹고가기 버튼
         JLabel OrderB2 = new JLabel();
         OrderB2.setBounds(301, 370, 145,145);
         OrderB2.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 System.out.println("먹고가기");
+                // 이 다음 메뉴 선택 창으로 넘어갈 예정
             }
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
@@ -286,6 +314,7 @@ public class FrameWork {
             }
         });
 
+        // 취소 버튼
         JLabel X_bt = new JLabel();
         X_bt.setBounds(459,140,35,35);
         X_bt.addMouseListener(new MouseAdapter() {
