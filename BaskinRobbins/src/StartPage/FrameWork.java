@@ -8,6 +8,8 @@ import java.net.*;
 import java.util.*;
 import java.util.Timer;
 
+//SeelctType 파일의 SelecIceCreamType_Main 함수 콜
+import SelectType.SelectIceCreamType_Main;
 
 public class FrameWork {
     static float f = 1.69160305F;
@@ -281,8 +283,8 @@ public class FrameWork {
         OrderB1.setBounds(108, 370, 145,145);
         OrderB1.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
+                SelectIceCreamType_Main.SICT_main();
                 System.out.println("가져가기");
-                // 이 다음 메뉴 선택 창으로 넘어갈 예정
             }
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
@@ -300,8 +302,8 @@ public class FrameWork {
         OrderB2.setBounds(301, 370, 145,145);
         OrderB2.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
+                SelectIceCreamType_Main.SICT_main();
                 System.out.println("먹고가기");
-                // 이 다음 메뉴 선택 창으로 넘어갈 예정
             }
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
