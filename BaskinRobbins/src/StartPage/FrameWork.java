@@ -13,6 +13,7 @@ import SelectType.SelectIceCreamType_Main;
 
 public class FrameWork {
     static float f = 1.69160305F;
+    static String ordervlaue;
 
     // 기본 프레임 설정
     public static void Frame(JFrame frame) {
@@ -137,7 +138,7 @@ public class FrameWork {
         final int panelWidth1 = 0;
         final int panelWidth2 = panel.getWidth();
 
-        // 광고 프레임 
+        // 광고 프레임
         JLabel backframe = new JLabel();
         backframe.setBounds((570 - (int) (804 / f)) / 2, 12, (int) (804 / f), (int) (1046 / f));
         ImageIcon bfI = new ImageIcon("Img/StartStepImg/backframe.png");
@@ -153,7 +154,7 @@ public class FrameWork {
         panel.add(backside1);
         // 광고 넘어가는 공간 가리기2 (오른쪽)
         JLabel backside2 = new JLabel();
-        backside2.setBounds( ((570 - (int) (804 / f)) / 2) +  (int) (804/f), 12,47,(int) (1046 / f));
+        backside2.setBounds( ((570 - (int) (804 / f)) / 2) +  (int) (804/f), 12,48,(int) (1046 / f));
         backside2.setBackground(new Color(247,247,247));
         backside2.setOpaque(true);
         panel.add(backside2);
@@ -192,7 +193,7 @@ public class FrameWork {
 
                     panel.revalidate();
                     panel.repaint();
-                } 
+                }
                 else {
                     xPos1 = panel.getWidth();
 
@@ -201,7 +202,7 @@ public class FrameWork {
                     if (path_cnt1 >= Img_path1.length) {
                         path_cnt1 = 0;
                     }
-                    
+
                     ImageIcon ad1I = new ImageIcon(Img_path1[path_cnt1]);
                     Image ad1_img = ad1I.getImage();
                     Image ad1_logo = ad1_img.getScaledInstance((int) (804 / f), (int) (1046 / f), Image.SCALE_SMOOTH);
@@ -283,8 +284,14 @@ public class FrameWork {
         OrderB1.setBounds(108, 370, 145,145);
         OrderB1.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
-                SelectIceCreamType_Main.SICT_main();
-                System.out.println("가져가기");
+                try {
+                    ordervlaue = "가져가기";
+                    SelectIceCreamType_Main.SICT_main();
+
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
             }
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
@@ -302,8 +309,12 @@ public class FrameWork {
         OrderB2.setBounds(301, 370, 145,145);
         OrderB2.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
-                SelectIceCreamType_Main.SICT_main();
-                System.out.println("먹고가기");
+                try {
+                    ordervlaue = "먹고가기";
+                    SelectIceCreamType_Main.SICT_main();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
@@ -349,5 +360,9 @@ public class FrameWork {
 
         panel.revalidate();
         panel.repaint();
+    }
+
+    public String Ordervalue() {
+        return ordervlaue;
     }
 }
