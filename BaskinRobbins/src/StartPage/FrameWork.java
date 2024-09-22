@@ -213,8 +213,8 @@ public class FrameWork {
                     panel.repaint();
 
                     try {
-                        // 6초 대기
-                        Thread.sleep(6000);
+                        // 5초 대기
+                        Thread.sleep(5000);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
