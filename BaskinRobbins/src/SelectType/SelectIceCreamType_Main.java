@@ -22,9 +22,10 @@ public class SelectIceCreamType_Main {
     }
 
     // 다른 클래스에 이 프레임을 전달하기 위한 함수
-    public JFrame getFrame() {
+    public static JFrame getFrame() {
         return frame;
     }
+
 }
 
 
