@@ -15,6 +15,11 @@ public class FrameWork {
     static float f = 1.69160305F;
     static String ordervlaue;
 
+    static JLabel OrderB1;
+    static JLabel OrderB2;
+    static JLabel X_bt;
+
+
     // 기본 프레임 설정
     public static void Frame(JFrame frame) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -32,11 +37,11 @@ public class FrameWork {
     }
 
     // 패널 작성 코드
-    public static void Panel(JPanel panel, JFrame frame) {
-        panel.setLayout(null);
-        panel.setBounds(frame.getBounds());
-        panel.setBackground(new Color(247, 247, 247));
-        frame.add(panel);
+    public static void Panel(JPanel panel1, JFrame frame) {
+        panel1.setLayout(null);
+        panel1.setBounds(frame.getBounds());
+        panel1.setBackground(new Color(247, 247, 247));
+        frame.add(panel1);
 
         //주문 버튼1 작성 코드
         JLabel Order1 = new JLabel();
@@ -47,7 +52,7 @@ public class FrameWork {
         Order1.setIcon(new ImageIcon(od_logo1));
         Order1.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
-                OrderUI(panel);
+                OrderUI(panel1);
             }
 
             public void mouseEntered(MouseEvent e) {
@@ -70,7 +75,7 @@ public class FrameWork {
         Order2.setIcon(new ImageIcon(od_logo2));
         Order2.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
-                OrderUI(panel);
+                OrderUI(panel1);
             }
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
@@ -118,15 +123,15 @@ public class FrameWork {
         backgroundW.setBackground(Color.WHITE);
 
         // 광고창 함수 호출
-        Advertisement(panel);
+        Advertisement(panel1);
 
-        panel.add(backgroundW);
-        panel.add(Order1);
-        panel.add(Order2);
-        panel.add(maker);
+        panel1.add(backgroundW);
+        panel1.add(Order1);
+        panel1.add(Order2);
+        panel1.add(maker);
 
-        panel.revalidate();
-        panel.repaint();
+        panel1.revalidate();
+        panel1.repaint();
     }
 
     public static void Advertisement(JPanel panel) {
@@ -263,35 +268,39 @@ public class FrameWork {
     }
 
     // 주문 버튼 눌렀을때 작동
-    public static void OrderUI(JPanel panel) {
+    public static void OrderUI(JPanel panel1) {
 
         // 배경을 어둡게 하기
         JLabel Black = new JLabel();
-        Black.setBounds(0, 0, panel.getWidth(), panel.getHeight());
+        Black.setBounds(0, 0, panel1.getWidth(), panel1.getHeight());
         Black.setBackground(new Color(0, 0, 0, 128)); // 검은색 반투명 배경
         Black.setOpaque(true);
 
         // 주문 기본 창
         JLabel TogoForhere = new JLabel();
-        TogoForhere.setBounds((panel.getWidth() - (int) (724 / f))/2 , 135, (int) (724 / f), (int) (1002 / f));
+        TogoForhere.setBounds((panel1.getWidth() - (int) (724 / f))/2 , 135, (int) (724 / f), (int) (1002 / f));
         ImageIcon tfI = new ImageIcon("Img/StartStepImg/TogoForhere.png");
         Image ad2_img = tfI.getImage();
         Image ad2_logo = ad2_img.getScaledInstance((int) (724 / f), (int) (1002 / f), Image.SCALE_SMOOTH);
         TogoForhere.setIcon(new ImageIcon(ad2_logo));
 
         // 가져가기 버튼
-        JLabel OrderB1 = new JLabel();
+        OrderB1 = new JLabel();
         OrderB1.setBounds(108, 370, 145,145);
         OrderB1.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
-                try {
-                    ordervlaue = "가져가기";
-                    SelectIceCreamType_Main.SICT_main();
+                ordervlaue = "가져가기";
+                panel1.setVisible(false);
+                SelectIceCreamType_Main.SICT_main();
 
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+                panel1.remove(Black);
+                panel1.remove(TogoForhere);
+                panel1.remove(X_bt);
+                panel1.remove(OrderB1);
+                panel1.remove(OrderB2);
 
+                panel1.revalidate();
+                panel1.repaint();
             }
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
@@ -305,16 +314,22 @@ public class FrameWork {
         });
 
         // 먹고가기 버튼
-        JLabel OrderB2 = new JLabel();
+        OrderB2 = new JLabel();
         OrderB2.setBounds(301, 370, 145,145);
         OrderB2.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
-                try {
-                    ordervlaue = "먹고가기";
-                    SelectIceCreamType_Main.SICT_main();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+                ordervlaue = "먹고가기";
+                panel1.setVisible(false);
+                SelectIceCreamType_Main.SICT_main();
+
+                panel1.remove(Black);
+                panel1.remove(TogoForhere);
+                panel1.remove(X_bt);
+                panel1.remove(OrderB1);
+                panel1.remove(OrderB2);
+
+                panel1.revalidate();
+                panel1.repaint();
             }
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
@@ -328,18 +343,18 @@ public class FrameWork {
         });
 
         // 취소 버튼
-        JLabel X_bt = new JLabel();
+        X_bt = new JLabel();
         X_bt.setBounds(459,140,35,35);
         X_bt.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
-                panel.remove(Black);
-                panel.remove(TogoForhere);
-                panel.remove(X_bt);
-                panel.remove(OrderB1);
-                panel.remove(OrderB2);
+                panel1.remove(Black);
+                panel1.remove(TogoForhere);
+                panel1.remove(X_bt);
+                panel1.remove(OrderB1);
+                panel1.remove(OrderB2);
 
-                panel.revalidate();
-                panel.repaint();
+                panel1.revalidate();
+                panel1.repaint();
             }
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
@@ -352,14 +367,14 @@ public class FrameWork {
             }
         });
 
-        panel.add(Black, 0);
-        panel.add(TogoForhere,0);
-        panel.add(X_bt,0);
-        panel.add(OrderB1,0);
-        panel.add(OrderB2,0);
+        panel1.add(Black, 0);
+        panel1.add(TogoForhere,0);
+        panel1.add(X_bt,0);
+        panel1.add(OrderB1,0);
+        panel1.add(OrderB2,0);
 
-        panel.revalidate();
-        panel.repaint();
+        panel1.revalidate();
+        panel1.repaint();
     }
 
     public String Ordervalue() {
