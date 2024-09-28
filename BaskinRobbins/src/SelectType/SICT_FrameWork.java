@@ -2,7 +2,6 @@ package SelectType;
 
 import StartPage.BaskinRobbins_Main;
 import StartPage.FrameWork;
-import StartPage.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,28 +22,15 @@ public class SICT_FrameWork {
 
     static boolean IorC = false;
 
-    public static void Frame(JFrame frame) {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    public static void Panel(JPanel panel2, JFrame frame) {
 
-        JFrame StartPage_frame = BaskinRobbins_Main.getFrame();
-        StartPage_frame.dispose();
+        IorC = false;
 
-        // frame 기본 설정
-        frame.setSize(570, 900);
-        int x = 50;
-        int y = ((screenSize.height - 900) / 2) - 20;
-        frame.setLocation(x, y);
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
-        frame.setVisible(true);
-    }
-
-    public static void Panel(JPanel panel, JFrame frame) {
-        // panel 기본 설정
-        panel.setLayout(null);
-        panel.setBounds(frame.getBounds());
-        panel.setBackground(new Color(247, 247, 247));
-        frame.add(panel);
+        // panel2 기본 설정
+        panel2.setLayout(null);
+        panel2.setBounds(frame.getBounds());
+        panel2.setBackground(new Color(247, 247, 247));
+        frame.add(panel2);
 
         // 기본 사진 넣기
         JLabel Background = new JLabel();
@@ -60,9 +46,11 @@ public class SICT_FrameWork {
         ToStart.setBounds(11, 11, (int) (74 / f), (int) (84 / f));
         ToStart.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
-                Main main = new Main();
-                main.main(new String[]{});
-                frame.dispose();
+                // 현제 패널 안보이게 설정
+                panel2.setVisible(false);
+                // 가장 처음 패널 보이게 설정
+                JPanel panel1 = BaskinRobbins_Main.getPanel1();
+                panel1.setVisible(true);
             }
 
             public void mouseEntered(MouseEvent e) {
@@ -77,9 +65,12 @@ public class SICT_FrameWork {
         });
 
         // 메뉴 창 추가를 위해 클래스 불러오기
-        SICT_Menu menu = new SICT_Menu(panel,IorC);
+        SICT_Menu menu = new SICT_Menu(panel2,IorC);
         // 기본적으로 아이스키림 메뉴로 시작
         menu.IceCream_or_Cake(); //IorC = false -> 아이스크림
+        // 주문한 케이크 처리 함수 불러오기
+        menu.Ordered_Menu();
+
 
         // "메뉴를 선택해 주세요." 라벨 추가
         JLabel PSM = new JLabel("메뉴를 선택해 주세요.");
@@ -140,6 +131,8 @@ public class SICT_FrameWork {
                 IorC = false;
                 // 아이스크림 메뉴창 불러오기
                 menu.IceCream_or_Cake();
+                // 주문한 케이크 처리 함수 불러오기
+                menu.Ordered_Menu();
 
                 Selected.setLocation(((frame.getWidth() - (int) (920 / f)) / 2)+9 ,214); // 106/2
                 Dessert.setForeground(new Color(30,33,39));
@@ -211,6 +204,8 @@ public class SICT_FrameWork {
                 IorC = true;
                 // 케이크 메뉴창 불러오기
                 menu.IceCream_or_Cake();
+                // 주문한 케이크 처리 함수 불러오기
+                menu.Ordered_Menu();
 
                 Selected.setLocation(((frame.getWidth() - (int) (920 / f)) / 2)+9 ,214+(106/2)*2);
                 IceCream.setForeground(new Color(30,33,39));
@@ -326,19 +321,17 @@ public class SICT_FrameWork {
             }
         });
 
+        panel2.add(Dessert);
+        panel2.add(BeverageBlast);
+        panel2.add(WhatYouWantCake);
+        panel2.add(IceCreamCake);
+        panel2.add(ReadyPackBlockPack);
+        panel2.add(IceCream);
+        panel2.add(Selected);
 
-
-        panel.add(Dessert);
-        panel.add(BeverageBlast);
-        panel.add(WhatYouWantCake);
-        panel.add(IceCreamCake);
-        panel.add(ReadyPackBlockPack);
-        panel.add(IceCream);
-        panel.add(Selected);
-
-        panel.add(OrderLabel);
-        panel.add(PSM);
-        panel.add(ToStart);
-        panel.add(Background);
+        panel2.add(OrderLabel);
+        panel2.add(PSM);
+        panel2.add(ToStart);
+        panel2.add(Background);
     }
 }
