@@ -1,8 +1,6 @@
 package SelectType;
 
 import SelectType.Option.Option_Main;
-import SelectType.Select_Taste.ST_Main;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -53,7 +51,7 @@ public class SICT_Menu {
 
     public SICT_Menu(JPanel panel2, boolean IorC) {
         panel2.setVisible(true);
-        this.IorC = IorC;
+        SICT_Menu.IorC = IorC;
 
         GridLayout layout1 = new GridLayout(0, 3, 10, 15); // 3열, 행은 자동으로 증가, 가로 간격 10px, 세로 간격 15px
         // 내부 패널 설정
@@ -82,7 +80,7 @@ public class SICT_Menu {
         //다음 버튼 기본
         Select_Done_Gray = new JLabel("");
         Select_Done_Gray.setBounds(250,800, (int) (494/f)-10, (int) (80/f));
-        ImageIcon Select_Done_GrayI = new ImageIcon("Img/SICTImg/SelectDone_Gray.png");;
+        ImageIcon Select_Done_GrayI = new ImageIcon("Img/SICTImg/SelectDone_Gray.png");
         Image Select_Done_Gray_img = Select_Done_GrayI.getImage();
         Image Select_Done_Gray_logo = Select_Done_Gray_img.getScaledInstance((int) (494/f)-10, (int) (80/f),Image.SCALE_SMOOTH);
         Select_Done_Gray.setIcon(new ImageIcon(Select_Done_Gray_logo));
@@ -163,8 +161,7 @@ public class SICT_Menu {
                     } else { // 아이스크림 선택 시
                         // 아이스크림 컵 or 컵 선택
                         //주문 창 옵션 선택 클래스 불러오기
-                        Option_Main optionMain = new Option_Main();
-                        optionMain.O_main(IorC);
+                        Option_Main.O_main(IorC);
 
                         // 이미지 복사 및 Lpanel2에 추가
                         ImageIcon copiedIcon = new ImageIcon(label_logo);

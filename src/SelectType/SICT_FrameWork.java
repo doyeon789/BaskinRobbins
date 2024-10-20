@@ -68,7 +68,7 @@ public class SICT_FrameWork {
         // 메뉴 창 추가를 위해 클래스 불러오기
         SICT_Menu menu = new SICT_Menu(panel2,IorC);
         // 기본적으로 아이스키림 메뉴로 시작
-        menu.IceCream_or_Cake(); //IorC = false -> 아이스크림
+        SICT_Menu.IceCream_or_Cake(); //IorC = false -> 아이스크림
         // 주문한 케이크 처리 함수 불러오기
         //menu.Ordered_Menu();
 

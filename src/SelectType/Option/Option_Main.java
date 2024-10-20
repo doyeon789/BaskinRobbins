@@ -12,7 +12,7 @@ public class Option_Main {
         panel3 = new JPanel();
 
         // 프레임, 패널 편집
-        Option_FrameWork.Panel(panel3,frame,IorC);
+        Option_FrameWork.Panel(panel3,frame);
 
         // 리로드
         panel3.revalidate();
