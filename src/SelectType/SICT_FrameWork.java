@@ -131,7 +131,7 @@ public class SICT_FrameWork {
 
                 IorC = false;
                 // 아이스크림 메뉴창 불러오기
-                menu.IceCream_or_Cake();
+                SICT_Menu.IceCream_or_Cake();
                 // 주문한 케이크 처리 함수 불러오기
 
                 Selected.setLocation(((frame.getWidth() - (int) (920 / f)) / 2)+9 ,214); // 106/2

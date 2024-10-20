@@ -67,7 +67,7 @@ public class ST_FrameWork {
         //다음 버튼 기본
         JLabel Select_Done_Gray = new JLabel("");
         Select_Done_Gray.setBounds(250,800, (int) (494/f)-10, (int) (80/f));
-        ImageIcon Select_Done_GrayI = new ImageIcon("Img/SICTImg/SelectDone_Gray.png");;
+        ImageIcon Select_Done_GrayI = new ImageIcon("Img/SICTImg/SelectDone_Gray.png");
         Image Select_Done_Gray_img = Select_Done_GrayI.getImage();
         Image Select_Done_Gray_logo = Select_Done_Gray_img.getScaledInstance((int) (494/f)-10, (int) (80/f),Image.SCALE_SMOOTH);
         Select_Done_Gray.setIcon(new ImageIcon(Select_Done_Gray_logo));
@@ -75,7 +75,7 @@ public class ST_FrameWork {
         //다음 버튼 핑크
         JLabel Select_Done = new JLabel("");
         Select_Done.setBounds(250,800, (int) (494/f)-10, (int) (80/f));
-        ImageIcon Select_DoneI = new ImageIcon("Img/SICTImg/SelectDone_Pink.png");;
+        ImageIcon Select_DoneI = new ImageIcon("Img/SICTImg/SelectDone_Pink.png");
         Image Select_Done_img = Select_DoneI.getImage();
         Image Select_Done_logo = Select_Done_img.getScaledInstance((int) (494/f)-10, (int) (80/f),Image.SCALE_SMOOTH);
         Select_Done.setIcon(new ImageIcon(Select_Done_logo));

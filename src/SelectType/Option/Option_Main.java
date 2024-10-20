@@ -7,7 +7,7 @@ import javax.swing.*;
 public class Option_Main {
     static JPanel panel3;
 
-    public static void O_main(boolean IorC){
+    public static void O_main(){
         JFrame frame = BaskinRobbins_Main.getFrame();
         panel3 = new JPanel();
 

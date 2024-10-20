@@ -161,7 +161,7 @@ public class SICT_Menu {
                     } else { // 아이스크림 선택 시
                         // 아이스크림 컵 or 컵 선택
                         //주문 창 옵션 선택 클래스 불러오기
-                        Option_Main.O_main(IorC);
+                        Option_Main.O_main();
 
                         // 이미지 복사 및 Lpanel2에 추가
                         ImageIcon copiedIcon = new ImageIcon(label_logo);
