@@ -100,12 +100,7 @@ public class ST_FrameWork {
             }
         });
 
-        JLabel RCLICK = new JLabel();
-        RCLICK.setBounds(0,0,30,30);
-        RCLICK.setBackground(Color.BLUE);
-
         Ipanel.add(Icecreams);
-        Ipanel.add(RCLICK);
 
         //다음 버튼 기본
         JLabel Select_Done_Gray = new JLabel("");
