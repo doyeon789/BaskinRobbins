@@ -1,6 +1,5 @@
 package SelectType.Select_Taste;
 
-import SelectType.Option.Option_Main;
 import SelectType.SICT_Menu;
 import StartPage.BaskinRobbins_Main;
 import StartPage.FrameWork;
@@ -195,7 +194,7 @@ public class ST_FrameWork {
         });
 
         All = new JLabel("전체 맛");
-        All.setBounds(((frame.getWidth() - (int) (920 / f)) / 2) + 31, 214+(106/2)*1, 100, 50);
+        All.setBounds(((frame.getWidth() - (int) (920 / f)) / 2) + 31, 214+(106/2), 100, 50);
         All.setForeground(new Color(30,33,39));
         try {
             Font BMJUA = Font.createFont(Font.TRUETYPE_FONT, new File("Fonts/BMJUA_otf.otf"));
