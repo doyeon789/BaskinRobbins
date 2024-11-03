@@ -98,7 +98,6 @@ public class ST_FrameWork {
                 Icecreams.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // 마우스 커서 기본값으로 변경
             }
         });
-
         Ipanel.add(Icecreams);
 
         //다음 버튼 기본
