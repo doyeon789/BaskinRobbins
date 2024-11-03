@@ -1,5 +1,6 @@
 package SelectType.Select_Taste;
 
+import SelectType.Option.Option_Main;
 import SelectType.SICT_Menu;
 import StartPage.BaskinRobbins_Main;
 import StartPage.FrameWork;
@@ -22,6 +23,9 @@ public class ST_FrameWork {
     static JLabel CoffeCaramelTea;
     static JLabel VanillaMint;
     static JLabel GrainNuts;
+
+    static JPanel Ipanel = new JPanel();
+    static JScrollPane IscrollPane;
 
     public static void Panel(JPanel panel4,JFrame frame){
 
@@ -64,6 +68,45 @@ public class ST_FrameWork {
             }
         });
 
+        // 내부 패널 설정
+        Ipanel.setOpaque(false);
+        Ipanel.setLayout(new FlowLayout());
+
+        // 스크롤 패널 생성 및 설정2
+        IscrollPane = new JScrollPane(Ipanel);
+        IscrollPane.setBounds(105, 185, 470, 474);
+        IscrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        IscrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        IscrollPane.setBorder(BorderFactory.createEmptyBorder());
+        IscrollPane.getViewport().setOpaque(false);
+        IscrollPane.setOpaque(false);
+
+        JLabel Icecreams = new JLabel();
+        Icecreams.setOpaque(false);
+        Icecreams.setBounds(0, 0, 916 / 2, 2100 / 2);
+        ImageIcon IcecreamsI = new ImageIcon("Img/SICTImg/Select_Taste/IceCreams.png");
+        Image IcecreamsImg = IcecreamsI.getImage();
+        Image IcecreamsLogo = IcecreamsImg.getScaledInstance(916/2, 2100 / 2, Image.SCALE_SMOOTH);
+        Icecreams.setIcon(new ImageIcon(IcecreamsLogo));
+        Icecreams.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                Icecreams.setCursor(new Cursor(Cursor.HAND_CURSOR)); // 마우스 커서 변경
+            }
+
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                Icecreams.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // 마우스 커서 기본값으로 변경
+            }
+        });
+
+        JLabel RCLICK = new JLabel();
+        RCLICK.setBounds(0,0,30,30);
+        RCLICK.setBackground(Color.BLUE);
+
+        Ipanel.add(Icecreams);
+        Ipanel.add(RCLICK);
+
         //다음 버튼 기본
         JLabel Select_Done_Gray = new JLabel("");
         Select_Done_Gray.setBounds(250,800, (int) (494/f)-10, (int) (80/f));
@@ -84,7 +127,7 @@ public class ST_FrameWork {
         // "맛을 선택해 주세요." 라벨 추가
         JLabel PST = new JLabel("맛을 선택해 주세요.");
         PST.setOpaque(true);
-        PST.setBackground(new Color(247, 247, 247));
+        PST.setBackground(new Color(243, 243, 243));
         PST.setBounds(((frame.getWidth() - (int) (920 / f)) / 2) + 10, 115, 200, 30);
         try {
             Font BMJUA = Font.createFont(Font.TRUETYPE_FONT, new File("Fonts/BMJUA_otf.otf"));
@@ -404,6 +447,8 @@ public class ST_FrameWork {
         panel4.add(Select_Done);
         panel4.add(Select_Done_Gray);
 
+
+
         panel4.add(Recommend);
         panel4.add(All);
         panel4.add(Fruit);
@@ -413,6 +458,8 @@ public class ST_FrameWork {
         panel4.add(VanillaMint);
         panel4.add(GrainNuts);
         panel4.add(Selected);
+
+        panel4.add(IscrollPane);
 
         panel4.add(PST);
         panel4.add(OrderLabel);
