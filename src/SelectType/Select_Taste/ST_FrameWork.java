@@ -1,6 +1,7 @@
 package SelectType.Select_Taste;
 
 import SelectType.SICT_Menu;
+import SelectType.SelectIceCreamType_Main;
 import StartPage.BaskinRobbins_Main;
 import StartPage.FrameWork;
 
@@ -14,6 +15,10 @@ import java.io.IOException;
 public class ST_FrameWork {
     static float f = 1.69160305F;
 
+    static JLabel Select_Done_Gray;
+    static JLabel Select_Done;
+    static boolean isSelect_done = false;
+
     static JLabel Recommend;
     static JLabel All;
     static JLabel Fruit;
@@ -26,8 +31,9 @@ public class ST_FrameWork {
     static JPanel Ipanel = new JPanel();
     static JScrollPane IscrollPane;
 
-    public static void Panel(JPanel panel4,JFrame frame){
+    static JLabel RainbowS;
 
+    public static void Panel(JPanel panel4, JFrame frame) {
         // panel2 기본 설정
         panel4.setLayout(null);
         panel4.setBounds(frame.getBounds());
@@ -49,7 +55,7 @@ public class ST_FrameWork {
         ToStart.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 SICT_Menu.clearLpanel2();
-                // 현제 패널 안보이게 설정
+                // 현재 패널 안 보이게 설정
                 panel4.setVisible(false);
                 // 가장 처음 패널 보이게 설정
                 JPanel panel1 = BaskinRobbins_Main.getPanel1();
@@ -71,7 +77,7 @@ public class ST_FrameWork {
         Ipanel.setOpaque(false);
         Ipanel.setLayout(new FlowLayout());
 
-        // 스크롤 패널 생성 및 설정2
+        // 스크롤 패널 생성 및 설정
         IscrollPane = new JScrollPane(Ipanel);
         IscrollPane.setBounds(105, 185, 470, 474);
         IscrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
@@ -80,12 +86,13 @@ public class ST_FrameWork {
         IscrollPane.getViewport().setOpaque(false);
         IscrollPane.setOpaque(false);
 
+        // Icecreams 라벨 설정
         JLabel Icecreams = new JLabel();
         Icecreams.setOpaque(false);
         Icecreams.setBounds(0, 0, 916 / 2, 2100 / 2);
         ImageIcon IcecreamsI = new ImageIcon("Img/SICTImg/Select_Taste/IceCreams.png");
         Image IcecreamsImg = IcecreamsI.getImage();
-        Image IcecreamsLogo = IcecreamsImg.getScaledInstance(916/2, 2100 / 2, Image.SCALE_SMOOTH);
+        Image IcecreamsLogo = IcecreamsImg.getScaledInstance(916 / 2, 2100 / 2, Image.SCALE_SMOOTH);
         Icecreams.setIcon(new ImageIcon(IcecreamsLogo));
         Icecreams.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
@@ -100,22 +107,78 @@ public class ST_FrameWork {
         });
         Ipanel.add(Icecreams);
 
-        //다음 버튼 기본
-        JLabel Select_Done_Gray = new JLabel("");
-        Select_Done_Gray.setBounds(250,800, (int) (494/f)-10, (int) (80/f));
+        // 클릭 라벨 설정
+        JLabel click = new JLabel();
+        click.setBounds(237, 153, 100, 100);
+        click.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e){
+                super.mousePressed(e);
+                Select_Done_Gray.setVisible(false);
+                Select_Done.setVisible(true);
+                isSelect_done = true;
+                RainbowS.setVisible(true);
+            }
+
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                click.setCursor(new Cursor(Cursor.HAND_CURSOR)); // 마우스 커서 변경
+            }
+
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                click.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // 마우스 커서 기본값으로 변경
+            }
+        });
+
+        // Icecreams 위에 겹치는 레이어 패널 생성
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.setPreferredSize(new Dimension(916 / 2, 2100 / 2));
+        layeredPane.add(Icecreams, Integer.valueOf(1)); // 기본 레이어
+        layeredPane.add(click, Integer.valueOf(2)); // 겹치는 레이어
+
+        // Ipanel에 layeredPane 추가
+        Ipanel.add(layeredPane);
+
+        // 다음 버튼 기본
+        Select_Done_Gray = new JLabel("");
+        Select_Done_Gray.setBounds(250, 800, (int) (494 / f) - 10, (int) (80 / f));
         ImageIcon Select_Done_GrayI = new ImageIcon("Img/SICTImg/SelectDone_Gray.png");
         Image Select_Done_Gray_img = Select_Done_GrayI.getImage();
-        Image Select_Done_Gray_logo = Select_Done_Gray_img.getScaledInstance((int) (494/f)-10, (int) (80/f),Image.SCALE_SMOOTH);
+        Image Select_Done_Gray_logo = Select_Done_Gray_img.getScaledInstance((int) (494 / f) - 10, (int) (80 / f), Image.SCALE_SMOOTH);
         Select_Done_Gray.setIcon(new ImageIcon(Select_Done_Gray_logo));
 
-        //다음 버튼 핑크
-        JLabel Select_Done = new JLabel("");
-        Select_Done.setBounds(250,800, (int) (494/f)-10, (int) (80/f));
+        // 다음 버튼 핑크
+        Select_Done = new JLabel("");
+        Select_Done.setBounds(250, 800, (int) (494 / f) - 10, (int) (80 / f));
         ImageIcon Select_DoneI = new ImageIcon("Img/SICTImg/SelectDone_Pink.png");
         Image Select_Done_img = Select_DoneI.getImage();
-        Image Select_Done_logo = Select_Done_img.getScaledInstance((int) (494/f)-10, (int) (80/f),Image.SCALE_SMOOTH);
+        Image Select_Done_logo = Select_Done_img.getScaledInstance((int) (494 / f) - 10, (int) (80 / f), Image.SCALE_SMOOTH);
         Select_Done.setIcon(new ImageIcon(Select_Done_logo));
         Select_Done.setVisible(false);
+        Select_Done.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e){
+                super.mousePressed(e);
+                if(isSelect_done){
+                    panel4.setVisible(false);
+                    Select_Done.setVisible(false);
+                    Select_Done_Gray.setVisible(true);
+                    isSelect_done = false;
+
+                    JPanel panel2 = SelectIceCreamType_Main.getPanel2();
+                    panel2.setVisible(true);
+                }
+            }
+
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                Select_Done.setCursor(new Cursor(Cursor.HAND_CURSOR)); // 마우스 커서 변경
+            }
+
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                Select_Done.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // 마우스 커서 기본값으로 변경
+            }
+        });
 
         // "맛을 선택해 주세요." 라벨 추가
         JLabel PST = new JLabel("맛을 선택해 주세요.");
@@ -157,7 +220,7 @@ public class ST_FrameWork {
         Image Selected_img = SelectedI.getImage();
         Image Selected_logo = Selected_img.getScaledInstance(158 / 2, 106 / 2, Image.SCALE_SMOOTH);
         Selected.setIcon(new ImageIcon(Selected_logo));
-        
+
         // 메뉴 선택란
         Recommend = new JLabel("추천 맛");
         Recommend.setBounds(((frame.getWidth() - (int) (920 / f)) / 2) + 31, 215, 100, 50);
@@ -240,7 +303,7 @@ public class ST_FrameWork {
         }
         Fruit.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
-                
+
                 // 케이크 메뉴창 불러오기
                 //menu.Recommend_or_Cake();
                 // 주문한 케이크 처리 함수 불러오기
@@ -435,12 +498,16 @@ public class ST_FrameWork {
             }
         });
 
-
+        RainbowS = new JLabel("");
+        RainbowS.setVisible(false);
+        RainbowS.setBounds(144, 678, 70,70);
+        ImageIcon RainbowSI = new ImageIcon("Img/SICTImg/Select_Taste/rainbowS.png");
+        Image RainbowS_img = RainbowSI.getImage();
+        Image RainbowS_logo = RainbowS_img.getScaledInstance(70,70, Image.SCALE_SMOOTH);
+        RainbowS.setIcon(new ImageIcon(RainbowS_logo));
 
         panel4.add(Select_Done);
         panel4.add(Select_Done_Gray);
-
-
 
         panel4.add(Recommend);
         panel4.add(All);
@@ -453,12 +520,11 @@ public class ST_FrameWork {
         panel4.add(Selected);
 
         panel4.add(IscrollPane);
+        panel4.add(RainbowS);
 
         panel4.add(PST);
         panel4.add(OrderLabel);
         panel4.add(ToStart);
         panel4.add(Background);
     }
-
-
 }
