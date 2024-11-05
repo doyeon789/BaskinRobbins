@@ -1,5 +1,6 @@
 package SelectType;
 
+import CheckAgain.OrderDone_Main;
 import SelectType.Option.Option_Main;
 import javax.swing.*;
 import java.awt.*;
@@ -178,7 +179,9 @@ public class SICT_Menu {
                         Select_Done.addMouseListener(new MouseAdapter() {
                             public void mousePressed(MouseEvent e){
                                 panel2.setVisible(false);
-                                // 결제 ㄱㄱㄱㄱㄱㄱㄱ
+
+                                // 메뉴 선태 확인
+                                OrderDone_Main.OD_main();
                             }
 
                             public void mouseEntered(MouseEvent e) {

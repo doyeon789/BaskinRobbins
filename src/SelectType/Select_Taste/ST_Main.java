@@ -22,4 +22,7 @@ public class ST_Main {
         panel4.revalidate();
         panel4.repaint();
     }
+    public static JPanel getPanel4(){
+        return panel4;
+    }
 }

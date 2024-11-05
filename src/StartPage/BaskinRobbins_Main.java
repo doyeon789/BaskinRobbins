@@ -3,7 +3,7 @@ package StartPage;
 import javax.swing.*;
 
 public class BaskinRobbins_Main {
-    static JFrame frame;
+    public static JFrame frame;
     static JPanel panel1;
 
     public BaskinRobbins_Main(){
