@@ -176,10 +176,10 @@ public class SICT_Menu {
 
                     Select_Done.setVisible(true);
                     if(Select_Done.isVisible()){
+
                         Select_Done.addMouseListener(new MouseAdapter() {
                             public void mousePressed(MouseEvent e){
                                 panel2.setVisible(false);
-
                                 // 메뉴 선태 확인
                                 OrderDone_Main.OD_main();
                             }

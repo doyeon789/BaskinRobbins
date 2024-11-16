@@ -1,6 +1,5 @@
 package CheckAgain;
 
-import SelectType.Select_Taste.ST_Main;
 import StartPage.BaskinRobbins_Main;
 
 import javax.swing.*;
@@ -13,9 +12,8 @@ public class OrderDone_Main {
         JFrame frame = BaskinRobbins_Main.getFrame();
 
         panel5 = new JPanel();
-        panel5 = ST_Main.getPanel4();
 
-        System.out.println("hi");
+        OD_FrameWork.Panel(panel5,frame);
 
         // 리로드
         panel5.revalidate();
