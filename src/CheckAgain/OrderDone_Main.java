@@ -19,6 +19,9 @@ public class OrderDone_Main {
         panel5.revalidate();
         panel5.repaint();
     }
+    public static JPanel getPanel5(){
+        return panel5;
+    }
 }
 
 

@@ -1,5 +1,6 @@
 package CheckAgain;
 
+import CheckAgain.Change_taste.CT_Main;
 import SelectType.SICT_Menu;
 import StartPage.BaskinRobbins_Main;
 import StartPage.FrameWork;
@@ -11,14 +12,13 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
-import static SelectType.Select_Taste.ST_Main.getPanel4;
 
 public class OD_FrameWork {
     static float f = 1.69160305F;
 
     static JPanel Opanel = new JPanel();
     static JScrollPane OscrollPane;
-    static JLabel Moremenu;
+    static JLabel Moremenu = new JLabel();;
 
     static int total_price = 0;
 
@@ -46,6 +46,7 @@ public class OD_FrameWork {
         ToStart.setBounds(11, 11, (int) (74 / f), (int) (84 / f));
         ToStart.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
+                Moremenu.setLocation(10, 10 + 123);
                 SICT_Menu.clearLpanel2();
                 panel5.setVisible(false);
                 JPanel panel1 = BaskinRobbins_Main.getPanel1();
@@ -108,7 +109,6 @@ public class OD_FrameWork {
         // SG 패널 설정 (검은색 네모)
         SGPane(Opanel,panel5);
 
-        Moremenu = new JLabel();
         Moremenu.setOpaque(false);
         Moremenu.setBounds(10, 10 + 123, 1012 / 2, 178 / 2);
         ImageIcon MoremenuI = new ImageIcon("Img/CheckAgain/MoreMenu.png");
@@ -186,14 +186,8 @@ public class OD_FrameWork {
         RSedit.setBounds(498,11,25,25);
         RSedit.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
-
-
-                // 여기에 새로운 패너러 만들기
-                //JPanel panel4 = getPanel4();
-                //panel4.setVisible(true);
-
-                panel5.revalidate();
-                panel5.repaint();
+                panel5.setVisible(false);
+                CT_Main.CTmain();
             }
 
             public void mouseEntered(MouseEvent e) {
