@@ -36,8 +36,9 @@ public class ST_FrameWork {
     public static void Panel(JPanel panel4, JFrame frame) {
         // panel2 기본 설정
         panel4.setLayout(null);
-        panel4.setBounds(frame.getBounds());
+        panel4.setBounds(0,0,570, 900);
         panel4.setBackground(new Color(247, 247, 247));
+        panel4.setVisible(true);
         frame.add(panel4);
 
         // 기본 사진 넣기

@@ -28,8 +28,9 @@ public class SICT_FrameWork {
 
         // panel2 기본 설정
         panel2.setLayout(null);
-        panel2.setBounds(frame.getBounds());
+        panel2.setBounds(0,0,570, 900);
         panel2.setBackground(new Color(247, 247, 247));
+        panel2.setVisible(true);
         frame.add(panel2);
 
         // 기본 사진 넣기
@@ -50,8 +51,8 @@ public class SICT_FrameWork {
                 // 현제 패널 안보이게 설정
                 panel2.setVisible(false);
                 // 가장 처음 패널 보이게 설정
-                JPanel panel1 = BaskinRobbins_Main.getPanel1();
-                panel1.setVisible(true);
+
+                new BaskinRobbins_Main();
             }
 
             public void mouseEntered(MouseEvent e) {

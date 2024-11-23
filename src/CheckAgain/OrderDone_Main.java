@@ -6,12 +6,10 @@ import javax.swing.*;
 
 
 public class OrderDone_Main {
-    static JPanel panel5;
+    static JPanel panel5 = new JPanel();
 
     public static void OD_main(){
         JFrame frame = BaskinRobbins_Main.getFrame();
-
-        panel5 = new JPanel();
 
         OD_FrameWork.Panel(panel5,frame);
 

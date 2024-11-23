@@ -2,6 +2,7 @@ package CheckAgain;
 
 import CheckAgain.Change_taste.CT_Main;
 import SelectType.SICT_Menu;
+import SelectType.SelectIceCreamType_Main;
 import StartPage.BaskinRobbins_Main;
 import StartPage.FrameWork;
 
@@ -12,22 +13,27 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
-
 public class OD_FrameWork {
     static float f = 1.69160305F;
 
     static JPanel Opanel = new JPanel();
     static JScrollPane OscrollPane;
-    static JLabel Moremenu = new JLabel();;
+    static JLabel Moremenu = new JLabel();
+    static JLabel Moremenu_click = new JLabel();
+
+    static boolean RS_or_MT = false;
 
     static int total_price = 0;
 
     static int SG_price = 3900;
     static int SG_count = 1;
 
+    static int TL_price = 30000;
+    static int TL_count = 1;
+
     public static void Panel(JPanel panel5, JFrame frame) {
         panel5.setLayout(null);
-        panel5.setBounds(frame.getBounds());
+        panel5.setBounds(0,0,570, 900);
         panel5.setBackground(new Color(247, 247, 247));
         frame.add(panel5);
         panel5.setVisible(true);
@@ -106,9 +112,10 @@ public class OD_FrameWork {
         layeredPane.setPreferredSize(new Dimension(916 / 2, 2100 / 2));
         layeredPane.setLayout(null);
 
-        // SG 패널 설정 (검은색 네모)
         SGPane(Opanel,panel5);
+        //TLPane(Opanel,panel5);
 
+        JLabel Moremenu = new JLabel();
         Moremenu.setOpaque(false);
         Moremenu.setBounds(10, 10 + 123, 1012 / 2, 178 / 2);
         ImageIcon MoremenuI = new ImageIcon("Img/CheckAgain/MoreMenu.png");
@@ -116,6 +123,39 @@ public class OD_FrameWork {
         Image Moremenu_logo = Moremenu_img.getScaledInstance(1012 / 2, 178 / 2, Image.SCALE_SMOOTH);
         Moremenu.setIcon(new ImageIcon(Moremenu_logo));
         Opanel.add(Moremenu);
+
+        JLabel Moremenu_click = new JLabel();
+        Moremenu_click.setBounds(102, 10 + 123 + 27, 327,60);
+        Moremenu_click.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+
+                TLPane(Opanel,panel5);
+
+                Moremenu_click.setLocation(Moremenu_click.getX(),Moremenu_click.getY()+123);
+                Moremenu.setLocation(Moremenu.getX(),Moremenu.getY() + 123);
+
+                panel5.revalidate();
+                panel5.repaint();
+
+                JPanel panel2 = SelectIceCreamType_Main.getPanel2();
+                panel2.setVisible(true);
+
+                //panel5.setVisible(false);
+            }
+
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                Moremenu_click.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                Moremenu_click.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+        });
+
+
+        Opanel.add(Moremenu_click,0);
 
         // Opanel에 layeredPane 추가
         Opanel.add(layeredPane);
@@ -129,6 +169,29 @@ public class OD_FrameWork {
         OscrollPane.getViewport().setOpaque(false);
         OscrollPane.setOpaque(false);
 
+        JLabel Next = new JLabel();
+        Next.setBounds(253,800,275,46);
+        Next.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                System.out.println("넘어가기");
+
+                panel5.setVisible(false);
+            }
+
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                Next.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                Next.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+        });
+
+
+        panel5.add(Next);
+
         panel5.add(OscrollPane,0);
 
         panel5.add(CO);
@@ -136,6 +199,7 @@ public class OD_FrameWork {
         panel5.add(ToStart);
         panel5.add(Background);
     }
+
     public static void SGPane(JPanel Opanel,JPanel panel5){
         JPanel SG = new JPanel();
         SG.setBounds(0, 10, 1122/ 2, 246 / 2); // 위치와 크기 설정
@@ -186,6 +250,16 @@ public class OD_FrameWork {
         RSedit.setBounds(498,11,25,25);
         RSedit.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
+                RS_or_MT = true;
+
+                ImageIcon RSLabelI_m = new ImageIcon("Img/CheckAgain/ChangTaste/AMLabel.png");
+                Image RSLabel_img_m = RSLabelI_m.getImage();
+                Image RSLabel_logo_m = RSLabel_img_m.getScaledInstance(1122/ 2, 246/ 2, Image.SCALE_SMOOTH);
+                RSLabel.setIcon(new ImageIcon(RSLabel_logo_m));
+
+                panel5.revalidate();
+                panel5.repaint();
+
                 panel5.setVisible(false);
                 CT_Main.CTmain();
             }
@@ -209,6 +283,7 @@ public class OD_FrameWork {
                 Opanel.remove(SG);
 
                 Moremenu.setLocation(Moremenu.getX(),Moremenu.getY() - 123);
+                Moremenu_click.setLocation(Moremenu_click.getX(),Moremenu_click.getY()-123);
 
                 panel5.revalidate();
                 panel5.repaint();
@@ -289,6 +364,157 @@ public class OD_FrameWork {
         SG.add(SG_Price);
         SG.add(RSLabel);
         Opanel.add(SG);
+    }
+    public static void TLPane(JPanel Opanel,JPanel panel5){
+        JPanel SG_TL = new JPanel();
+        SG_TL.setBounds(0, 10 + 123, 1122/ 2, 246 / 2); // 위치와 크기 설정
+        SG_TL.setLayout(null);
+
+        JLabel TLLabel = new JLabel();
+        TLLabel.setOpaque(false);
+        TLLabel.setBounds(0, 0, 1122/ 2, 246 / 2);
+        ImageIcon TLLabelI = new ImageIcon("Img/CheckAgain/TLLabel.png");
+        Image TLLabel_img = TLLabelI.getImage();
+        Image TLLabel_logo = TLLabel_img.getScaledInstance(1122/ 2, 246/ 2, Image.SCALE_SMOOTH);
+        TLLabel.setIcon(new ImageIcon(TLLabel_logo));
+
+        JLabel TL_Price = new JLabel(String.valueOf(TL_price));
+        TL_Price.setForeground(Color.black);
+        TL_Price.setBounds(490,61,100,70);
+        try {
+            Font BMJUA = Font.createFont(Font.TRUETYPE_FONT, new File("Fonts/BMJUA_otf.otf"));
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(BMJUA);
+            TL_Price.setFont(BMJUA.deriveFont(22f));
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
+        }
+
+        JLabel TL_Count = new JLabel(String.valueOf(TL_count));
+        TL_Count.setForeground(Color.black);
+        TL_Count.setBounds(56,54,100,70);
+        try {
+            Font BMJUA = Font.createFont(Font.TRUETYPE_FONT, new File("Fonts/BMJUA_otf.otf"));
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(BMJUA);
+            TL_Count.setFont(BMJUA.deriveFont(16f));
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
+        }
+
+        JLabel TLwon = new JLabel("₩");
+        TLwon.setForeground(Color.black);
+        TLwon.setBounds(457,63,100,70);
+        try {
+            Font BMJUA = Font.createFont(Font.TRUETYPE_FONT, new File("Fonts/Jalnan2.otf"));
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(BMJUA);
+            TLwon.setFont(BMJUA.deriveFont(18f));
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
+        }
+
+        JLabel TLedit = new JLabel();
+        TLedit.setBounds(498,11,25,25);
+        TLedit.addMouseListener(new MouseAdapter() {
+
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                TLedit.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                TLedit.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+        });
+
+
+        JLabel TLdelete = new JLabel();
+        TLdelete.setBounds(527,13,23,23);
+        TLdelete.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                Opanel.remove(SG_TL);
+
+                Moremenu.setLocation(Moremenu.getX(),Moremenu.getY() - 123);
+                Moremenu_click.setLocation(Moremenu_click.getX(),Moremenu_click.getY()-123);
+
+                panel5.revalidate();
+                panel5.repaint();
+            }
+
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                TLdelete.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                TLdelete.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+        });
+
+        JLabel TLplus = new JLabel();
+        TLplus.setBounds(75,84,16,16);
+        TLplus.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                SG_price += 3900;
+                SG_count++;
+
+                TL_Count.setText(String.valueOf(SG_count));
+                TL_Price.setText(String.valueOf(SG_price));
+
+                panel5.revalidate();
+                panel5.repaint();
+            }
+
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                TLplus.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                TLplus.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+        });
+
+        JLabel TLminus = new JLabel();
+        TLminus.setBounds(29,84,16,16);
+        TLminus.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                TL_price -= 30000;
+                TL_count--;
+                if(TL_price <= 30000){
+                    TL_price = 30000;
+                }
+                if(TL_count <= 1){
+                    TL_count = 1;
+                }
+                TL_Count.setText(String.valueOf(TL_count));
+                TL_Price.setText(String.valueOf(TL_price));
+
+                panel5.revalidate();
+                panel5.repaint();
+            }
+
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                TLminus.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                TLminus.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+        });
+
+        SG_TL.add(TLminus);
+        SG_TL.add(TLplus);
+        SG_TL.add(TLedit);
+        SG_TL.add(TLdelete);
+        SG_TL.add(TLwon);
+        SG_TL.add(TL_Count);
+        SG_TL.add(TL_Price);
+        SG_TL.add(TLLabel);
+        Opanel.add(SG_TL);
     }
 
 }

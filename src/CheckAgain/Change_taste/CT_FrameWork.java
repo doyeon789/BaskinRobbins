@@ -1,9 +1,7 @@
 package CheckAgain.Change_taste;
 
-import CheckAgain.OD_FrameWork;
 import CheckAgain.OrderDone_Main;
 import SelectType.SICT_Menu;
-import SelectType.SelectIceCreamType_Main;
 import StartPage.BaskinRobbins_Main;
 import StartPage.FrameWork;
 
@@ -38,7 +36,7 @@ public class CT_FrameWork {
     public static void Panel(JPanel panel_change, JFrame frame) {
         // panel2 기본 설정
         panel_change.setLayout(null);
-        panel_change.setBounds(frame.getBounds());
+        panel_change.setBounds(0,0,570, 900);
         panel_change.setBackground(new Color(247, 247, 247));
         frame.add(panel_change);
         panel_change.setVisible(true);

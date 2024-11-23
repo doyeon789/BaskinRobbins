@@ -24,8 +24,9 @@ public class Option_FrameWork {
 
         // panel3 기본 설정
         panel3.setLayout(null);
-        panel3.setBounds(frame.getBounds());
+        panel3.setBounds(0,0,570, 900);
         panel3.setBackground(new Color(247, 247, 247));
+        panel3.setVisible(true);
         frame.add(panel3);
 
         JPanel panel2 = SelectIceCreamType_Main.getPanel2();

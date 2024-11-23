@@ -39,8 +39,9 @@ public class FrameWork {
     // 패널 작성 코드
     public static void Panel(JPanel panel1, JFrame frame) {
         panel1.setLayout(null);
-        panel1.setBounds(frame.getBounds());
+        panel1.setBounds(0,0,570,900);
         panel1.setBackground(new Color(247, 247, 247));
+        panel1.setVisible(true);
         frame.add(panel1);
 
         //주문 버튼1 작성 코드
