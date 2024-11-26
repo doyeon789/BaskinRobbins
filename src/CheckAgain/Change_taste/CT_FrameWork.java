@@ -39,8 +39,6 @@ public class CT_FrameWork {
         panel_change.setBounds(0,0,570, 900);
         panel_change.setBackground(new Color(247, 247, 247));
         frame.add(panel_change);
-        panel_change.setVisible(true);
-
         // 기본 사진 넣기
         JLabel Background = new JLabel();
         Background.setOpaque(false);
@@ -87,58 +85,9 @@ public class CT_FrameWork {
         IscrollPane.getViewport().setOpaque(false);
         IscrollPane.setOpaque(false);
 
-        // Icecreams 라벨 설정
-        JLabel Icecreams = new JLabel();
-        Icecreams.setOpaque(false);
-        Icecreams.setBounds(0, 0, 916 / 2, 2100 / 2);
-        ImageIcon IcecreamsI = new ImageIcon("Img/SICTImg/Select_Taste/IceCreams.png");
-        Image IcecreamsImg = IcecreamsI.getImage();
-        Image IcecreamsLogo = IcecreamsImg.getScaledInstance(916 / 2, 2100 / 2, Image.SCALE_SMOOTH);
-        Icecreams.setIcon(new ImageIcon(IcecreamsLogo));
-        Icecreams.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent e) {
-                super.mouseEntered(e);
-                Icecreams.setCursor(new Cursor(Cursor.HAND_CURSOR)); // 마우스 커서 변경
-            }
-
-            public void mouseExited(MouseEvent e) {
-                super.mouseExited(e);
-                Icecreams.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // 마우스 커서 기본값으로 변경
-            }
-        });
-        Ipanel.add(Icecreams);
-
-        // 클릭 라벨 설정
-        JLabel click = new JLabel();
-        click.setBounds(0, 900, 100, 100);
-        click.addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent e){
-                super.mousePressed(e);
-                Select_Done_Gray.setVisible(false);
-                Select_Done.setVisible(true);
-                isSelect_done = true;
-                AppleMint.setVisible(true);
-            }
-
-            public void mouseEntered(MouseEvent e) {
-                super.mouseEntered(e);
-                click.setCursor(new Cursor(Cursor.HAND_CURSOR)); // 마우스 커서 변경
-            }
-
-            public void mouseExited(MouseEvent e) {
-                super.mouseExited(e);
-                click.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // 마우스 커서 기본값으로 변경
-            }
-        });
-
-        // Icecreams 위에 겹치는 레이어 패널 생성
-        JLayeredPane layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new Dimension(916 / 2, 2100 / 2));
-        layeredPane.add(Icecreams, Integer.valueOf(1)); // 기본 레이어
-        layeredPane.add(click, Integer.valueOf(2)); // 겹치는 레이어
-
-        // Ipanel에 layeredPane 추가
-        Ipanel.add(layeredPane);
+        // 메뉴 창 추가를 위해 클래스 불러오기
+        CT_Menu menu = new CT_Menu(panel_change);
+        CT_Menu.IceCreamsMenu(panel_change);
 
         // 다음 버튼 기본
         Select_Done_Gray = new JLabel("");
