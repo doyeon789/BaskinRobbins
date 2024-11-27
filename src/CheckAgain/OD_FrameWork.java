@@ -103,71 +103,37 @@ public class OD_FrameWork {
             e.printStackTrace();
         }
 
+        GridLayout layout = new GridLayout(0,1,0,0);
         // 내부 패널 설정
         Opanel.setOpaque(false);
-        Opanel.setLayout(null); // null 레이아웃 사용
+        Opanel.setLayout(layout);
 
-        // JLayeredPane 생성 및 설정
-        JLayeredPane layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new Dimension(916 / 2, 2100 / 2));
-        layeredPane.setLayout(null);
+// 스크롤 패널 생성 및 설정
+        OscrollPane = new JScrollPane(Opanel);
+        OscrollPane.setBounds(5, 200, 560, 915/2);
+        OscrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER); // never
+        OscrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // never
+        OscrollPane.setBorder(BorderFactory.createEmptyBorder());
+        OscrollPane.getViewport().setOpaque(false);
+        OscrollPane.setOpaque(false);
+
 
         SGPane(Opanel,panel5);
         //TLPane(Opanel,panel5);
 
-        JLabel Moremenu = new JLabel();
+        Moremenu = new JLabel();
         Moremenu.setOpaque(false);
-        Moremenu.setBounds(10, 10 + 123, 1012 / 2, 178 / 2);
+        Moremenu.setBounds(0, 0, 1012 / 2, 178 / 2);
         ImageIcon MoremenuI = new ImageIcon("Img/CheckAgain/MoreMenu.png");
         Image Moremenu_img = MoremenuI.getImage();
         Image Moremenu_logo = Moremenu_img.getScaledInstance(1012 / 2, 178 / 2, Image.SCALE_SMOOTH);
         Moremenu.setIcon(new ImageIcon(Moremenu_logo));
         Opanel.add(Moremenu);
 
-        JLabel Moremenu_click = new JLabel();
-        Moremenu_click.setBounds(102, 10 + 123 + 27, 327,60);
-        Moremenu_click.addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent e) {
+        Moremenu_click = new JLabel();
+        Moremenu.setOpaque(true);
+        Moremenu.setBounds(10,10,50,50);
 
-                TLPane(Opanel,panel5);
-
-                Moremenu_click.setLocation(Moremenu_click.getX(),Moremenu_click.getY()+123);
-                Moremenu.setLocation(Moremenu.getX(),Moremenu.getY() + 123);
-
-                panel5.revalidate();
-                panel5.repaint();
-
-                JPanel panel2 = SelectIceCreamType_Main.getPanel2();
-                panel2.setVisible(true);
-
-                //panel5.setVisible(false);
-            }
-
-            public void mouseEntered(MouseEvent e) {
-                super.mouseEntered(e);
-                Moremenu_click.setCursor(new Cursor(Cursor.HAND_CURSOR));
-            }
-
-            public void mouseExited(MouseEvent e) {
-                super.mouseExited(e);
-                Moremenu_click.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-            }
-        });
-
-
-        Opanel.add(Moremenu_click,0);
-
-        // Opanel에 layeredPane 추가
-        Opanel.add(layeredPane);
-
-        // 스크롤 패널 생성 및 설정
-        OscrollPane = new JScrollPane(Opanel);
-        OscrollPane.setBounds(5, 200, 565, 456);
-        OscrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-        OscrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        OscrollPane.setBorder(BorderFactory.createEmptyBorder());
-        OscrollPane.getViewport().setOpaque(false);
-        OscrollPane.setOpaque(false);
 
         JLabel Next = new JLabel();
         Next.setBounds(253,800,275,46);
@@ -202,7 +168,7 @@ public class OD_FrameWork {
 
     public static void SGPane(JPanel Opanel,JPanel panel5){
         JPanel SG = new JPanel();
-        SG.setBounds(0, 10, 1122/ 2, 246 / 2); // 위치와 크기 설정
+        SG.setBounds(0, 0, 1122/ 2, 246 / 2); // 위치와 크기 설정
         SG.setLayout(null);
 
         JLabel RSLabel = new JLabel();
@@ -281,10 +247,6 @@ public class OD_FrameWork {
         RSdelete.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 Opanel.remove(SG);
-
-                Moremenu.setLocation(Moremenu.getX(),Moremenu.getY() - 123);
-                Moremenu_click.setLocation(Moremenu_click.getX(),Moremenu_click.getY()-123);
-
                 panel5.revalidate();
                 panel5.repaint();
             }
@@ -432,9 +394,6 @@ public class OD_FrameWork {
         TLdelete.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 Opanel.remove(SG_TL);
-
-                Moremenu.setLocation(Moremenu.getX(),Moremenu.getY() - 123);
-                Moremenu_click.setLocation(Moremenu_click.getX(),Moremenu_click.getY()-123);
 
                 panel5.revalidate();
                 panel5.repaint();
